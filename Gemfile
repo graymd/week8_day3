@@ -50,6 +50,22 @@ group :development, :test do
   
   #rspec testing framework
   gem 'rspec-rails', '~> 3.0'
+  #feature testing
+  gem 'capybara'
+  #launch applications - used for launching screenshots in capybara
+  gem 'launchy'
+
+  #required for non-headless testing
+  gem 'selenium-webdriver'
+  #needed to use chrome in non-headless testing
+  gem 'chromedriver-helper'
+
+  #set up ruby test objects
+  gem 'factory_girl_rails'
+
+  #clean out db after running factory girl
+  gem 'database_cleaner'
+
 
   #makes tests easier on the fingers and eyes: https://github.com/thoughtbot/shoulda
   gem 'shoulda'

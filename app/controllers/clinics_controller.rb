@@ -55,6 +55,7 @@ class ClinicsController < ApplicationController
   def destroy
     @clinic = Clinic.find params[:id]
     @clinic.destroy
+    flash[:notice] = "Clinic was successfully deleted."
     redirect_to clinics_path
   end
 
