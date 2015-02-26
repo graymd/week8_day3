@@ -28,7 +28,8 @@
       = f.radio_button(:gender, "female")
       = f.label(:gender, "female")
     %br
-      %strong= f.label :blood_type
+      %strong
+        = f.label :blood_type
       = f.select :blood_type, options_for_select(Patient::BLOOD_TYPE_OPTIONS, f.object.blood_type), include_blank: "---Select---"
     .text-left
       .checkbox

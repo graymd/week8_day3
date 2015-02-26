@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-DatabaseCleaner.strategy = :truncation
-DatabaseCleaner.clean
-
 describe 'test the add a new patient', type: :feature, js: true do
-
-  FactoryGirl.create(:clinic)
   
+  before(:each) do
+    FactoryGirl.create(:clinic)
+  end
+
   it 'should not allow submit until First and Last Name are entered' do
+
     visit clinics_path
     expect(page).to have_content('New Clinic Hospital')
     click_link 'New Clinic Hospital'
@@ -53,6 +53,32 @@ describe 'test the add a new patient', type: :feature, js: true do
     fill_in "Last name", with: ""
     # expect(page).to have_content('Last name required')
   end
+
+  it 'should successfully save a patient' do
+    visit clinics_path
+    expect(page).to have_content('New Clinic Hospital')
+    click_link 'New Clinic Hospital'
+    expect(page).to have_content('Patients:')
+    click_link 'Add Patient'
+    expect(page).to have_content('Enter Patient Information')
+    fill_in "First name", with: "Maddie"
+    fill_in 'Last name', with: 'Dog'
+    fill_in 'Date of birth', with: '07/07/2001'
+    fill_in 'Description', with: 'sick'
+    choose 'patient_gender_male'
+    select 'O+', :from => 'Blood type'
+    click_button "Submit"
+    expect(page).to have_content('Patient info was successfully saved.')
+    expect(page).not_to have_content('Enter Patient Information')
+  end
+
+  it 'should save a patient unsuccessfully' do
+
+
+
+    # Patient info was NOT successfully saved.
+  end
+
 
 
 

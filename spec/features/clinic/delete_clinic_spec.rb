@@ -1,13 +1,17 @@
 require 'rails_helper'
 
-DatabaseCleaner.strategy = :truncation
-DatabaseCleaner.clean
+# DatabaseCleaner.strategy = :truncation
+# DatabaseCleaner.clean
+# FactoryGirl.create(:clinic)
 
 describe 'test the delete clinic' do 
 
-  FactoryGirl.create(:clinic)
+    before(:each) do
+     FactoryGirl.create(:clinic)
+    end
 
   it 'should delete the clinic when clicked' do
+    
     visit clinics_path
     expect(page).to have_content('New Clinic Hospital')
     click_link 'New Clinic Hospital'

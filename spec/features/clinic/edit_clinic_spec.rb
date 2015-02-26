@@ -1,12 +1,17 @@
 require 'rails_helper'
 
-DatabaseCleaner.strategy = :truncation
-DatabaseCleaner.clean
-describe 'test the edit clinics', type: :feature, js: true do
+# DatabaseCleaner.strategy = :truncation
+# DatabaseCleaner.clean
+# FactoryGirl.create(:clinic)
 
-  FactoryGirl.create(:clinic)
+describe 'test the edit clinic', type: :feature, js: true do
+
+    before(:each) do
+     FactoryGirl.create(:clinic)
+    end
 
     it 'should not allow submit until Name has been updated' do
+    # FactoryGirl.create(:clinic)
     visit clinics_path
     expect(page).to have_content('New Clinic Hospital')
     click_link 'New Clinic Hospital'
@@ -21,6 +26,7 @@ describe 'test the edit clinics', type: :feature, js: true do
   end
 
   it 'should successfully return to Clinic index if click cancel' do
+    # FactoryGirl.create(:clinic)
     visit clinics_path
     expect(page).to have_content('New Clinic Hospital')
     click_link 'New Clinic Hospital'
@@ -33,6 +39,7 @@ describe 'test the edit clinics', type: :feature, js: true do
   end
 
   it 'should successfully edit clinic' do
+    # FactoryGirl.create(:clinic)
     visit clinics_path
     expect(page).to have_content('New Clinic Hospital')
     click_link 'New Clinic Hospital'
